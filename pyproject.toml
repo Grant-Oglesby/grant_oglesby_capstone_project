@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Capstone Project"
+version = "0.1.0"
+description = "A capstone project for demonstrating skills in data engineering and machine learning."
+authors = [
+    { name = "Grant Oglesby", email = "grant.oglesby@hotmail.co.uk" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dynamic = ["dependencies"]
+
+[project.urls]
+Homepage = "https://github.com/Grant-Oglesby/grant_oglesby_capstone_project"
+
+[project.scripts]
+run_etl = "scripts/run_etl:main"
+run_tests = "tests/run_tests:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["*"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
