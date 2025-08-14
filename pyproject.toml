@@ -3,7 +3,7 @@ requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Capstone Project"
+name = "capstone-project"
 version = "0.1.0"
 description = "A capstone project for demonstrating skills in data engineering and machine learning."
 authors = [
@@ -22,8 +22,8 @@ dynamic = ["dependencies"]
 Homepage = "https://github.com/Grant-Oglesby/grant_oglesby_capstone_project"
 
 [project.scripts]
-run_etl = "scripts/run_etl:main"
-run_tests = "tests/run_tests:main"
+run_etl = "scripts.run_etl:main"
+run_tests = "tests.run_tests:main"
 
 [tool.setuptools.packages.find]
 where = ["."]

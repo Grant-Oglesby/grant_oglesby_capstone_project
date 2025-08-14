@@ -73,10 +73,6 @@ kanban
         )
     To Do (User Story 1:
             As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.)
-                Task 3: Create and install pyproject.toml and requirements.txt
-                Task 4: Setup .env.dev file to contain environment variables
-                Task 5: Create run_etl.py to control ETL pipeline
-                Task 6: Setup connection to call and receive source data
                 Task 6.1: TESTS - Create unit tests for data extraction functions
                 Task 7: Record data extraction process
                 Task 7.1: TESTS - Create end-to-end tests for data extraction
@@ -85,9 +81,12 @@ kanban
         
     In Progress (User Story 1:
             As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.)
-                Task 2: Setup file system in accordance with ETL pipeline standards
+                Task 6: Setup connection to call and receive source data
 
     Done (User Story 1:
             As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.)
                 Task 1: Create and clone git repository
-        
+                Task 2: Setup file system in accordance with ETL pipeline standards
+                Task 3: Create and install pyproject.toml and requirements.txt
+                Task 4: Setup .env.dev file to contain environment variables
+                Task 5: Create run_etl.py to control ETL pipeline
