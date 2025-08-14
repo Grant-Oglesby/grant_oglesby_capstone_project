@@ -1,0 +1,2 @@
+https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv
+https://nyc3.digitaloceanspaces.com/owid-public/data/energy/owid-energy-data.csv
