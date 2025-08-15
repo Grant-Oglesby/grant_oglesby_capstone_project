@@ -1,6 +1,10 @@
 import os
 
 
+class DatabaseConfigError(Exception):
+    pass
+
+
 def load_database_config():
     config = {
         "source_database": {
@@ -19,4 +23,15 @@ def load_database_config():
         },
     }
 
+    validate_database_config(config)
+
     return config
+
+
+def validate_database_config(config):
+    for db_key, db_value in config.items():
+        for key, value in db_value.items():
+            if value == "error":
+                raise DatabaseConfigError(
+                    f"Configuration error: {db_key} {key} is set to 'error'"
+                )
