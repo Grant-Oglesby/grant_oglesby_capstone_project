@@ -15,6 +15,3 @@ def extract_data():
         df = pd.read_csv(io.StringIO(data[i]), header=0)
         df_list.append(df)
         df.to_csv(f"data/extract/data{i}.csv")
-
-    for df in df_list:
-        print(df)

@@ -12,5 +12,4 @@ def retrieve_urls():
     with open("data/source.txt") as f:
         for line in f:
             urls_to_read.append(line.strip())
-    print(urls_to_read)
     return urls_to_read
