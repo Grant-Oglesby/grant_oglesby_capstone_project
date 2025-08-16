@@ -1,6 +1,9 @@
+annotated-types==0.7.0
 asttokens==3.0.0
--e git+https://github.com/Grant-Oglesby/grant_oglesby_capstone_project.git@1c52ffe59a318a972d3fed744e2be14d16b23524#egg=capstone_project
+-e git+https://github.com/Grant-Oglesby/grant_oglesby_capstone_project.git@cae12c9416f59d25c8fc89133f7f5434b0097b4e#egg=capstone_project
+certifi==2025.8.3
 chardet==5.2.0
+charset-normalizer==3.4.3
 click==8.2.1
 colorama==0.4.6
 comm==0.2.3
@@ -11,6 +14,7 @@ diff_cover==9.6.0
 executing==2.2.0
 flake8==7.3.0
 greenlet==3.2.4
+idna==3.10
 iniconfig==2.1.0
 ipykernel==6.30.1
 ipython==9.4.0
@@ -37,8 +41,11 @@ psutil==7.0.0
 psycopg==3.2.9
 pure_eval==0.2.3
 pycodestyle==2.14.0
+pydantic==2.11.7
+pydantic_core==2.33.2
 pyflakes==3.4.0
 Pygments==2.19.2
+pyproject-toml==0.1.0
 pytest==8.4.1
 pytest-cov==6.2.1
 pytest-mock==3.14.1
@@ -50,6 +57,8 @@ pywin32==311
 PyYAML==6.0.2
 pyzmq==27.0.1
 regex==2025.7.34
+requests==2.32.4
+setuptools==80.9.0
 six==1.17.0
 SQLAlchemy==2.0.43
 sqlfluff==3.4.2
@@ -58,6 +67,9 @@ tblib==3.1.0
 tornado==6.5.2
 tqdm==4.67.1
 traitlets==5.14.3
+typing-inspection==0.4.1
 typing_extensions==4.14.1
 tzdata==2025.2
+urllib3==2.5.0
 wcwidth==0.2.13
+wheel==0.45.1
