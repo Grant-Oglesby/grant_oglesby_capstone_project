@@ -10,8 +10,12 @@ def extract_data():
     data = extract_text()
 
     for i in range(len(data)):
-        df = pd.read_csv(io.StringIO(data[i]), header=0)
-        df_list.append(df)
-        df.to_csv(f"data/extract/data{i}.csv")
+        try:
+            df = pd.read_csv(io.StringIO(data[i]), header=0)
+        except Exception as e:
+            print(f"Error processing data for index {i}: {e}")
+        finally:
+            df_list.append(df)
+            df.to_csv(f"data/extract/data{i}.csv")
 
     return df_list

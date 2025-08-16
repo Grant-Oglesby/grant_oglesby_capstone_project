@@ -38,21 +38,6 @@ kanban
             As a Data Engineer/Scientist I want to ensure the application is scalable and performant to handle large datasets so that it can provide real-time insights and support a growing user base.
         )
     User Stories
-        (User Story 2:
-            As a data engineer, I want to transform the extracted datasets into a suitable format so that I can remove any inconsistencies and ensure data quality.
-                Task 1: Explore data in jupyter notebook
-                Task 1.1: Identify null values and determine strategy
-                Task 1.2: Identify duplicate records and determine strategy
-                Task 1.3: Identify variable formats and determine strategy
-                Task 1.4: Identify erroneous column typings and determine strategy
-                Task 2: Identify enrichment opportunities
-                Task 3: Create transformation functions to clean and format the data
-                Task 4: Join data into a single dataset
-                Task 5: Implement enrichment
-                Task 5.1: TESTS - Create unit tests for data transformation
-                Task 5.2: TESTS - Create end-to-end tests for data transformation
-                Task 5.3: TESTS - Create performance tests for data transformation
-        )
         (User Story 3:
             As a data engineer, I want to load the transformed datasets into a postgres database so that they can be easily accessed for analysis.
                 Task 1: Setup database connection
@@ -71,22 +56,36 @@ kanban
                 Task 3: Create data visualization components in Streamlit
                 Task 4: Implement responsive functionality in Streamlit
         )
-    To Do (User Story 1:
-            As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.)
-                Task 7: Record data extraction process
-                Task 7.1: TESTS - Create end-to-end tests for data extraction
-                Task 8: Implement data validation checks
-                Task 8.1: TESTS - Create unit tests for data validation functions
+    To Do 
+        (User Story 2:
+            As a data engineer, I want to transform the extracted datasets into a suitable format so that I can remove any inconsistencies and ensure data quality.)
+                Task 1.2: Identify duplicate records and determine strategy
+                Task 1.3: Identify variable formats and determine strategy
+                Task 1.4: Identify erroneous column typings and determine strategy
+                Task 2: Identify enrichment opportunities
+                Task 3: Create transformation functions to clean and format the data
+                Task 4: Join data into a single dataset
+                Task 5: Implement enrichment
+                Task 5.1: TESTS - Create unit tests for data transformation
+                Task 5.2: TESTS - Create end-to-end tests for data transformation
+                Task 5.3: TESTS - Create performance tests for data transformation
         
-    In Progress (User Story 1:
-            As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.)
-                Task 6.1: TESTS - Create unit tests for data extraction functions
+    In Progress 
+                Task 1: Explore data in jupyter notebook
+                Task 1.1: Identify null values and determine strategy
 
-    Done (User Story 1:
-            As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.)
+    Done 
+        (User Story 1:
+            As a data engineer, I want to extract specific datasets as part of an automated ETL pipeline so that I can prepare the data for transforming.
                 Task 1: Create and clone git repository
                 Task 2: Setup file system in accordance with ETL pipeline standards
                 Task 3: Create and install pyproject.toml and requirements.txt
                 Task 4: Setup .env.dev file to contain environment variables
                 Task 5: Create run_etl.py to control ETL pipeline
                 Task 6: Setup connection to call and receive source data
+                Task 6.1: TESTS - Create unit tests for data extraction functions
+                Task 7: Record data extraction process
+                Task 7.1: TESTS - Create end-to-end tests for data extraction
+                Task 8: Implement data validation checks
+                Task 8.1: TESTS - Create unit tests for data validation functions)
+            
