@@ -57,22 +57,8 @@ kanban
                 Task 4: Implement responsive functionality in Streamlit
         )
     To Do 
-        (User Story 2:
-            As a data engineer, I want to transform the extracted datasets into a suitable format so that I can remove any inconsistencies and ensure data quality.)
-                Task 1.2: Identify duplicate records and determine strategy
-                Task 1.3: Identify variable formats and determine strategy
-                Task 1.4: Identify erroneous column typings and determine strategy
-                Task 2: Identify enrichment opportunities
-                Task 3: Create transformation functions to clean and format the data
-                Task 4: Join data into a single dataset
-                Task 5: Implement enrichment
-                Task 5.1: TESTS - Create unit tests for data transformation
-                Task 5.2: TESTS - Create end-to-end tests for data transformation
-                Task 5.3: TESTS - Create performance tests for data transformation
-        
+                        
     In Progress 
-                Task 1: Explore data in jupyter notebook
-                Task 1.1: Identify null values and determine strategy
 
     Done 
         (User Story 1:
@@ -88,4 +74,16 @@ kanban
                 Task 7.1: TESTS - Create end-to-end tests for data extraction
                 Task 8: Implement data validation checks
                 Task 8.1: TESTS - Create unit tests for data validation functions)
-            
+        (User Story 2:
+            As a data engineer, I want to transform the extracted datasets into a suitable format so that I can remove any inconsistencies and ensure data quality.
+                Task 1: Explore data in jupyter notebook
+                Task 1.1: Identify null values and determine strategy
+                Task 1.2: Identify duplicate records and determine strategy
+                Task 1.3: Identify variable formats and determine strategy
+                Task 1.4: Identify erroneous column typings and determine strategy
+                Task 2: Identify enrichment opportunities
+                Task 3: Create transformation functions to clean and format the data
+                Task 4: Join data into a single dataset
+                Task 5: Implement enrichment
+                Task 5.1: TESTS - Create unit tests for data transformation
+                Task 5.2: TESTS - Create end-to-end tests for data transformation)

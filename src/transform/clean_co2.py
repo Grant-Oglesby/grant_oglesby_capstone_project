@@ -9,6 +9,7 @@ def drop_unnecessary_columns(df_co2):
 
 def drop_records_outside_timeline(df_co2):
     # Drop records outside the desired timeline
+    df_co2 = df_co2.groupby(['country', 'year']).agg('sum').reset_index()
     df_co2 = df_co2[df_co2['year'].between(1994, 2023)].reset_index(drop=True)
     return df_co2
 
@@ -341,11 +342,18 @@ def enrich_data(df_co2):
 
 
 def clean_co2(df_co2):
+    print("1. Dropping unnecessary columns")
     df_co2 = drop_unnecessary_columns(df_co2)
+    print("2. Dropping records outside timeline")
     df_co2 = drop_records_outside_timeline(df_co2)
+    print("3. Dropping records with missing values")
     df_co2 = drop_records_with_missing_values(df_co2)
+    print("4. Calculating missing values")
     df_co2 = calculate_missing_values(df_co2)
+    print("5. Dropping null columns")
     df_co2 = drop_null_columns(df_co2)
+    print("6. Converting column types")
     df_co2 = convert_columns_types(df_co2)
+    print("7. Enriching data with region information")
     df_co2 = enrich_data(df_co2)
-    return df_co2
+    return df_co2.set_index(['country', 'year'])

@@ -2,6 +2,7 @@ import os
 import sys
 from src.extract.extract import extract_data
 from config.env_config import setup_env
+from src.transform.transform import transform_data
 
 
 def main():
@@ -16,10 +17,13 @@ def main():
 
         # Extract
         print("Beginning extraction")
-        extract_data()
+        df_co2, df_energy = extract_data()
         print("Extraction completed\n")
 
         # Transform
+        print("Beginning transformation")
+        transform_data(df_co2, df_energy)
+        print("Transformation completed\n")
 
         # Load
 
