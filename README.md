@@ -38,27 +38,18 @@ kanban
             As a Data Engineer/Scientist I want to ensure the application is scalable and performant to handle large datasets so that it can provide real-time insights and support a growing user base.
         )
     User Stories
-        (User Story 3:
-            As a data engineer, I want to load the transformed datasets into a postgres database so that they can be easily accessed for analysis.
-                Task 1: Setup database connection
-                Task 2: Create tables and define schema
-                Task 3: Load data into database
-                Task 3.1: Create local csv file to stage data for testing purposes
-                Task 4: Implement data validation checks
-                Task 5: TESTS - Create unit tests for data loading
-                Task 6: TESTS - Create end-to-end tests for data loading
-                Task 7: TESTS - Create performance tests for data loading
-        )
-        (User Story 4:
+
+    To Do (User Story 4:
             As a data engineer, I want to build a Streamlit application that allows users to interact with the data and visualize key metrics so that they can easily understand and analyze the information.
                 Task 1: Explore data visualisation options in jupyter notebook
                 Task 2: Setup Streamlit application
                 Task 3: Create data visualization components in Streamlit
                 Task 4: Implement responsive functionality in Streamlit
-        )
-    To Do 
+          )
                         
-    In Progress 
+    In Progress (User Story 4:
+            As a data engineer, I want to build a Streamlit application that allows users to interact with the data and visualize key metrics so that they can easily understand and analyze the information.)
+                Task 1: Explore data visualisation options in jupyter notebook
 
     Done 
         (User Story 1:
@@ -73,7 +64,8 @@ kanban
                 Task 7: Record data extraction process
                 Task 7.1: TESTS - Create end-to-end tests for data extraction
                 Task 8: Implement data validation checks
-                Task 8.1: TESTS - Create unit tests for data validation functions)
+                Task 8.1: TESTS - Create unit tests for data validation functions
+        )
         (User Story 2:
             As a data engineer, I want to transform the extracted datasets into a suitable format so that I can remove any inconsistencies and ensure data quality.
                 Task 1: Explore data in jupyter notebook
@@ -86,4 +78,12 @@ kanban
                 Task 4: Join data into a single dataset
                 Task 5: Implement enrichment
                 Task 5.1: TESTS - Create unit tests for data transformation
-                Task 5.2: TESTS - Create end-to-end tests for data transformation)
+                Task 5.2: TESTS - Create end-to-end tests for data transformation
+        )
+        (User Story 3:
+            As a data engineer, I want to load the transformed datasets into a postgres database so that they can be easily accessed for analysis.
+                Task 1: Setup database connection
+                Task 2: Create tables and define schema
+                Task 3: Load data into database
+                Task 3.1: Create local csv file to stage data for testing purposes
+        )

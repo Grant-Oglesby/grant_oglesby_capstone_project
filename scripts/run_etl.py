@@ -3,6 +3,8 @@ import sys
 from src.extract.extract import extract_data
 from config.env_config import setup_env
 from src.transform.transform import transform_data
+from src.load.load import load_dataframe_to_db
+from src.load.load_database import get_engine
 
 
 def main():
@@ -22,10 +24,14 @@ def main():
 
         # Transform
         print("Beginning transformation")
-        transform_data(df_co2, df_energy)
+        df_transformed = transform_data(df_co2, df_energy)
         print("Transformation completed\n")
 
         # Load
+        print("Beginning loading")
+        load_dataframe_to_db(df_transformed, get_engine())
+
+        print(df_transformed.head())  # For demonstration purposes
 
     except Exception as e:
         print("Error: ETL Pipeline Failed")
