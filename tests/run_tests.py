@@ -1,6 +1,7 @@
 import sys
 import subprocess
 import os
+from tests.conftest import ensure_test_environment
 
 
 def main():
