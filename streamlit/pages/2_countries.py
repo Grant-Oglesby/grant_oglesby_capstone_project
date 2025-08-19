@@ -7,7 +7,6 @@ import os
 # Page configuration
 st.set_page_config(
     page_title="Country Data",
-    page_icon=":bar_chart:",
     layout="wide"
 )
 
@@ -50,21 +49,28 @@ selected_year_range = st.sidebar.slider(
     step=1
 )
 
+# Filter DataFrame based on selections
+# Filtering chart directly is exclusive for time ranges
+filtered_df = df_countries[
+    (df_countries['country'].isin(selected_countries)) &
+    (df_countries['year'] >= selected_year_range[0]) &
+    (df_countries['year'] <= selected_year_range[1])
+]
+
 # Display selected chart option as line graph
 fig = px.line(
-    df_countries[df_countries['country'].isin(selected_countries)],
+    filtered_df,
     x='year',
     y=selected_y_axis,
     title='CO2 Emissions per Capita Over Time',
     labels={'year': 'Year'},
-    color='country',
-    range_x=selected_year_range
+    color='country'
 )
 st.plotly_chart(fig)
 
 # Display select option in geographical format
 fig_geo = px.choropleth(
-    df_countries[df_countries['country'].isin(selected_countries)],
+    filtered_df,
     locations='iso_code',
     color=selected_y_axis,
     hover_name='country',

@@ -7,7 +7,6 @@ import os
 # Page configuration
 st.set_page_config(
     page_title="Regional Data",
-    page_icon=":bar_chart:",
     layout="wide"
 )
 
@@ -33,7 +32,7 @@ df_regions_median = aggregate_by_region_year(df, 'median')
 df_regions_min = aggregate_by_region_year(df, 'min')
 df_regions_max = aggregate_by_region_year(df, 'max')
 
-# list of each df_regions
+# list of each df_regions aggregate
 df_regions = {
     "Mean": df_regions_mean,
     "Sum": df_regions_sum,
@@ -70,29 +69,30 @@ selected_year_range = st.sidebar.slider(
     step=1
 )
 
+# Filter DataFrame based on selections
+# Filtering chart directly is exclusive for time ranges
+filtered_df = df_regions[selected_aggregation][
+    (df_regions[selected_aggregation]['year'] >= selected_year_range[0]) &
+    (df_regions[selected_aggregation]['year'] <= selected_year_range[1])
+]
+
 # Display selected chart option as line graph
 fig = px.line(
-    df_regions[selected_aggregation],
+    filtered_df,
     x='year',
     y=selected_y_axis,
-    title='CO2 Emissions per Capita Over Time',
+    title=f'{selected_aggregation} of {selected_y_axis} Over Time',
     labels={'year': 'Year'},
     color='region',
     range_x=selected_year_range
 )
 st.plotly_chart(fig)
 
-# Display select option in geographical format
-fig_geo = px.choropleth(
-    df_regions[selected_aggregation],
-    locations='iso_code',
-    color=selected_y_axis,
-    hover_name='region',
-    animation_frame='year',
-    title=(
-        f'Geographical Distribution of {selected_aggregation} '
-        f'{selected_y_axis}'
-    ),
-    color_continuous_scale=px.colors.sequential.Plasma
+# Display select option in pie chart format
+fig_pie = px.pie(
+    filtered_df,
+    names='region',
+    values=selected_y_axis,
+    title=f'{selected_aggregation} of {selected_y_axis} by Region',
 )
-st.plotly_chart(fig_geo)
+st.plotly_chart(fig_pie)
