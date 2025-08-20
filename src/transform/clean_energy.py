@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 
 
-# linear regression function to calculate missing values for every column
+# Linear regression function to calculate missing values for every column
 def linear_regression(df_energy):
     # Create a copy of the DataFrame to avoid changing the original data
     df_filled = df_energy.copy()

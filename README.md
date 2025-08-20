@@ -39,13 +39,9 @@ kanban
         )
     User Stories
 
-    To Do (User Story 4:
-            As a data engineer, I want to build a Streamlit application that allows users to interact with the data and visualize key metrics so that they can easily understand and analyze the information.)
-                Task 4: Implement responsive functionality in Streamlit
+    To Do 
                         
-    In Progress (User Story 4:
-            As a data engineer, I want to build a Streamlit application that allows users to interact with the data and visualize key metrics so that they can easily understand and analyze the information.)
-                Task 3: Create data visualization components in Streamlit
+    In Progress 
 
     Done 
         (User Story 1:
@@ -87,4 +83,6 @@ kanban
             As a data engineer, I want to build a Streamlit application that allows users to interact with the data and visualize key metrics so that they can easily understand and analyze the information.
                 Task 1: Explore data visualisation options in jupyter notebook
                 Task 2: Setup Streamlit application
+                Task 3: Create data visualization components in Streamlit
+                Task 4: Implement responsive functionality in Streamlit
         )

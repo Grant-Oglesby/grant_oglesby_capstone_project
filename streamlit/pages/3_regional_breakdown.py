@@ -22,6 +22,7 @@ region_countries = df.groupby('region')['country'].unique().to_dict()
 countries = df['country'].unique().tolist()
 
 # Setup sidebar for functionality
+st.sidebar.header("Region Breakdown")
 # Select what region to display
 selected_region = st.sidebar.selectbox(
     "Select Region",
@@ -76,7 +77,10 @@ fig = px.bar(
     y=selected_y_axis,
     color='country',
     barmode='group',
-    title=f'Comparison of {selected_y_axis} for {", ".join(selected_countries)}',
+    title=(
+        f'Comparison of {selected_y_axis} for '
+        f'{", ".join(selected_countries)}'
+    ),
 )
 st.plotly_chart(fig)
 
@@ -86,5 +90,14 @@ fig_pie = px.pie(
     names='country',
     values=selected_y_axis,
     title=f'{selected_y_axis} of {selected_region}',
+)
+fig_pie.update_traces(
+    textposition='inside',
+    textinfo='percent',
+    insidetextorientation='radial'
+)
+fig_pie.update_layout(
+    uniformtext_minsize=12,
+    uniformtext_mode='hide'
 )
 st.plotly_chart(fig_pie)

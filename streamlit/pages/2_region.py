@@ -19,9 +19,9 @@ def aggregate_by_region_year(df, agg_func):
 
 
 # import dataset as pd.DataFrame
-script_dir = os.path.dirname(os.path.abspath(__file__))
+file_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(
-    script_dir, "..", "..", "data", "load", "go_capstone_data.csv"
+    file_dir, "..", "..", "data", "load", "go_capstone_data.csv"
 )
 df = pd.read_csv(csv_path)
 
@@ -46,7 +46,7 @@ region_countries = df.groupby('region')['country'].unique().to_dict()
 countries = df['country'].unique().tolist()
 
 # Setup sidebar to provide functionality
-st.sidebar.header("Aggregation Options")
+st.sidebar.header("Region Options")
 # Select what values to display on y axis
 y_axis_options = df.columns[
     (df.dtypes != 'object') & (df.columns != 'year')
@@ -93,6 +93,15 @@ fig_pie = px.pie(
     filtered_df,
     names='region',
     values=selected_y_axis,
-    title=f'{selected_aggregation} of {selected_y_axis} by Region',
+    title=f'{selected_aggregation} of {selected_y_axis} by Region'
 )
-st.plotly_chart(fig_pie)
+fig_pie.update_traces(
+    textposition='inside',
+    textinfo='percent',
+    insidetextorientation='radial'
+)
+fig_pie.update_layout(
+    uniformtext_minsize=12,
+    uniformtext_mode='hide'
+)
+st.plotly_chart(fig_pie, use_container_width=True)
