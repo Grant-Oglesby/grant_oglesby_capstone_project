@@ -5,6 +5,8 @@ class DatabaseConfigError(Exception):
     pass
 
 
+# Heavily inspired by Ed Wright's walkthrough to setup environment
+# Function to retrieve database configuration
 def load_database_config():
     config = {
         "source_database": {
@@ -28,6 +30,7 @@ def load_database_config():
     return config
 
 
+# Function to validate database configuration
 def validate_database_config(config):
     for db_key, db_value in config.items():
         for key, value in db_value.items():

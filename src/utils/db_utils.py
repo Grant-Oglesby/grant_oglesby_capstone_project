@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine
 
 
+# Heavily inspired by Ed Wright's walkthrough to setup environment variables
+# Function to create a database engine
+# Includes the requirement to save to the de_2506_a schema
 def create_db_engine(connection_details):
     engine = create_engine(
         f"postgresql+psycopg://{connection_details['user']}"
@@ -11,6 +14,7 @@ def create_db_engine(connection_details):
     return engine
 
 
+# Collate the connection details for the database
 def get_connection_details(connection_details):
     engine = create_db_engine(connection_details)
     conn = engine.connect()

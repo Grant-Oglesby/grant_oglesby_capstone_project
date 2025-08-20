@@ -8,6 +8,7 @@ def get_engine():
     try:
         # Load environment variables from .env.dev
         connection_details = load_database_config()['target_database']
+        # Store and return connection details for database
         conn = get_connection_details(connection_details)
         return conn
     except Exception as e:

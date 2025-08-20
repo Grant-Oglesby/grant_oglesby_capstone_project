@@ -4,13 +4,13 @@ from src.extract.read_source import retrieve_urls
 
 
 def extract_text():
-    # Retrieve list of urls for data sources
+    # Retrieve list of urls for data sources and store in list
     urls = retrieve_urls()
     extract_list = []
 
     # Iterate through list and store each requests.get.text in data/extract
     for i in range(len(urls)):
-        # CHECK IF DATA ALREADY DOWNLOADED AND SKIP FILE SAVING IS EXISTS
+        # Check if data already downloaded and skip file saving if exists
         file_exists = os.path.exists(f"data/extract/data{i}.csv")
         # TESTING WHEN USING EXISTING FILES WILL NOT COVER LINES 19-22
         # TESTING RESULT WITH EXISTING FILES: 76%
@@ -24,4 +24,5 @@ def extract_text():
             with open(f"data/raw/data{i}.csv", "r") as file:
                 data = file.read()
                 extract_list.append(data)
+    # Return list of raw text to be used in transform phase
     return extract_list
