@@ -40,8 +40,8 @@ text_list = [
 # Initialize session state for image index
 if 'image_index' not in st.session_state:
     st.session_state.image_index = 0
-    st.session_state.serious = False
-    st.session_state.fun_or_serious = "Serious Mode"
+    st.session_state.serious = True
+    st.session_state.fun_or_serious = "The Fun Button"
 
 with st.empty():
     # Enter image into Streamlit from images folder
@@ -55,7 +55,8 @@ with st.empty():
             'serious_images', serious_image_list[st.session_state.image_index])
     st.image(image_path)
 # Image credits to ChatGPT
-st.write("Credit for all images goes to ChatGPT")
+if st.session_state.serious is False:
+    st.write("Credit for all stickman images goes to ChatGPT")
 # Display text description
 with st.expander("Notes"):
     st.markdown(
