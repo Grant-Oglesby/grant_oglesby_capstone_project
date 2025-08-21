@@ -17,7 +17,6 @@ try:
     # Attempt to connect to Pagila database for data
     conn = st.connection("postgresql", type="sql")
     df_countries = conn.query("SELECT * FROM de_2506_a.go_capstone_data")
-    st.write("Data loaded successfully.")
 except Exception as e:
     st.error(f"Error connecting to database: {e}\nUsing local file")
 else:
