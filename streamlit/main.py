@@ -39,20 +39,20 @@ image_list = [
     image
     for image in os.listdir(
         os.path.join(os.path.dirname(__file__), 'images')
-    ).sort()
-]
+    )
+].sort()
 serious_image_list = [
     image
     for image in os.listdir(
         os.path.join(os.path.dirname(__file__), 'serious_images')
-    ).sort()
-]
+    )
+].sort()
 text_list = [
     text
     for text in os.listdir(
         os.path.join(os.path.dirname(__file__), 'text')
-    ).sort()
-]
+    )
+].sort()
 
 # Initialize session state for image index
 if 'image_index' not in st.session_state:
