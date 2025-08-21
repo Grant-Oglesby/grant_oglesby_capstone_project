@@ -1,22 +1,22 @@
 import pandas as pd
 
 
+# Drop unnecessary columns from the CO2 DataFrame
 def drop_unnecessary_columns(df_co2):
-    # Drop unnecessary columns from the CO2 DataFrame
     df_co2.drop(columns=['Unnamed: 0'], inplace=True, errors='ignore')
     return df_co2
 
 
+# Drop records outside the desired timeline
 def drop_records_outside_timeline(df_co2):
-    # Drop records outside the desired timeline
     df_co2 = df_co2.groupby(['country', 'year']).agg('sum').reset_index()
     df_co2 = df_co2[df_co2['year'].between(1994, 2023)].reset_index(drop=True)
     return df_co2
 
 
+# Drop records with missing values in the CO2 DataFrame
+# iso_code 0 indicates aggregate country i.e. Global/Africa
 def drop_records_with_missing_values(df_co2):
-    # Drop records with missing values in the CO2 DataFrame
-    # iso_code 0 indicates aggregate country i.e. Global/Africa
     df_co2 = df_co2[df_co2['iso_code'] != 0]
     # Drop countries with zero population
     df_co2 = df_co2[
@@ -30,16 +30,16 @@ def drop_records_with_missing_values(df_co2):
     return df_co2
 
 
+# Fill missing GDP values with the mean GDP of each country
 def calculate_missing_values(df_co2):
-    # Fill missing GDP values with the mean GDP of each country
     mean_gdp = df_co2[df_co2['gdp'] != 0.0].groupby('country')['gdp'].mean()
     df_co2.loc[df_co2['gdp'] == 0.0, 'gdp'] = df_co2['country'].map(mean_gdp)
     return df_co2
 
 
+# Function to determine 0.0 values as percentage of total values
+# in each column
 def drop_null_columns(df_co2):
-    # Function to determine 0.0 values as percentage of total values
-    # in each column
     def count_zeros(df):
         return (df == 0).mean() * 100
     # Store columns with no null values
@@ -48,17 +48,18 @@ def drop_null_columns(df_co2):
     return df_co2
 
 
+# Convert columns to appropriate data types
 def convert_columns_types(df_co2):
-    # Convert columns to appropriate data types
     df_co2['population'] = df_co2['population'].astype(int)
     df_co2['gdp'] = df_co2['gdp'].astype(int)
     return df_co2
 
 
+# Add additional column that will check the country and select a suitable
+# region for association
+# Define region mapping for all 255 countries in the current dataframe
+# Copilot used to generate dictionary for countries to region
 def enrich_data(df_co2):
-    # Add additional column that will check the country and select a suitable
-    # region for association
-    # Define region mapping for all 255 countries in the current dataframe
     region_map = {
         # Africa
         'Algeria': 'Africa',
@@ -334,9 +335,11 @@ def enrich_data(df_co2):
         'Christmas Island': 'Other'
     }
 
+    # Function to assign region based on country
     def assign_region(country):
         return region_map.get(country, 'Other')
 
+    # Assign region to each row in the DataFrame through .apply()
     df_co2['region'] = df_co2['country'].apply(assign_region)
     return df_co2
 
