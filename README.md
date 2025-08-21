@@ -1,6 +1,61 @@
 # Grant Oglesby Capstone Project
 Capstone project for Digital Futures Data Engineering Academy
 
+## Project Setup
+The following instructions refer to the steps taken to set up and run the project on a Windows machine.
+If you are using a different operating system, please refer to the appropriate documentation for your platform.
+1. Clone the repository from the following link: https://github.com/Grant-Oglesby/grant_oglesby_capstone_project
+2. Create a virtual environment
+   ```
+   python -m venv .venv
+   ```
+3. Activate the virtual environment
+   ```
+   .venv\Scripts\activate
+   ```
+4. Install the required packages
+   ```
+   pip install -e .
+   ```
+5. Set up environment variables
+   - Create a `.env.dev` file in the root directory of the project
+   - Add the following environment variables to the `.env.dev` file:
+     ```
+     # Development environment variables
+
+     # Source database configuration
+     SOURCE_DB_NAME=
+     SOURCE_DB_USER=
+     SOURCE_DB_PASSWORD=
+     SOURCE_DB_HOST=
+     SOURCE_DB_PORT=
+
+     # Target database configuration
+     TARGET_DB_NAME=
+     TARGET_DB_USER=
+     TARGET_DB_PASSWORD=
+     TARGET_DB_HOST=
+     TARGET_DB_PORT=
+     ```
+   - Please enter your own details into the `.env.dev` file
+6. Run the ETL pipeline from the project root directory
+   ```
+   run_etl dev
+   ```
+   - This will create the necessary tables and load the data into the target database, as well as create local files for the extracted data
+7. Run the Streamlit application
+   ```
+   streamlit run streamlit/main.py
+   ```
+
+## Project Testing
+Execute the following after completing project setup
+```
+run_tests unit
+```
+- Currently, only unit testing has been completed for the project
+- Be aware that, due to errors, some tests overwrite datafiles and the ETL pipeline must be re-run to restore the original data
+
 ## Initiative
 To create a Streamlit application that will provide detailed analysis on historical data. The data used will be composed of global data, separated into countries and year, one dataset will contain information regarding CO2 and Greenhouse Gas emissions, the other will contain data regarding Energy statistics.
 
@@ -9,6 +64,36 @@ To create a Streamlit application that will provide detailed analysis on histori
   - https://nyc3.digitaloceanspaces.com/owid-public/data/co2/owid-co2-data.csv
 - Energy statistics data
   - https://nyc3.digitaloceanspaces.com/owid-public/data/energy/owid-energy-data.csv
+
+## Project Optimisation
+In the future, it would be a reasonable expectation to consider than the data sources used will be updated on a regular basis, with additional information being separated into country and year, as has been shown already implemented.
+As such, the current ETL pipeline should be able to deal with these additional datasets with limited adjustment.
+- Modify the script that selects 1994 to 2023 to instead capture the range of years that contain all countries with an iso_code.
+- Modify the script drop all but required columns prior to cleaning implementations.
+- Refer to columns to keep by their column name to prevent mishandling of data if the order of columns changes
+These changes should allow for a more flexible handling of the data, as well as short run times of the ETL pipeline since the scope of the data would be limited prior to cleaning.
+
+## Error Handling and Logging
+While there has been limited implementation of error handling, in the form of 'try except', and no formal logging process, I believe that it would be beneficial to and relatively easy to include a logging framework in the future. This could include:
+- Implementing more concise try-except blocks to catch and handle exceptions gracefully, rather than the broad catch-all approach currently in place
+- Adding logging statements throughout the code to track the flow of execution and capture important events in a log file that can be reviewed later, currently this is done using print statements which are transient at best
+
+## Security and Privacy Issues
+In terms of security concerns, I would take the stance that there are only truly two main issues with the project, given that the only personal details used are my own.
+- pyproject.toml - The toml file contains the ability to include the project owners name and email address, which could be a potential privacy concern if the file is shared publicly
+  - This was addressed by using a email address that is not used for any purpose other than for informal communication
+- .env.dev - The environment variables file contains the database connection details, which could be a security concern if the file is shared publicly
+  - This was included in .gitignore to prevent it from being tracked by version control
+
+## AWS Implementation
+The project is not currently hosted on AWS, but it could be deployed to AWS in the future. This would involve:
+- TRIGGER: Setting up AWS Workflow to trigger and manage the ETL pipeline on a schedule of once per year
+- EXTRACT: Use of AWS Glue to retrieve the required datasets with https protocols
+- TRANSFORM: Use of AWS Glue to clean and transform the data into a single cleaned dataset
+- LOAD: Use of AWS Glue to load the cleaned dataset into the target data store on AWS S3
+- VISUALISE: Use of AWS QuickSight to create visualizations and dashboards for the cleaned dataset
+- ALTERNATE VISUALISE: Use of Streamlit as currently implemented and change the data source to the cleaned dataset in AWS S3, with appropriate credentials held in a secrets manager
+This should allow for easy exploration and analysis of the data by end users and will require minimal resources, since the data is not expected to be updated significantly, beyond once per year.
 
 ## Definition of Done
 - All epics and user stories are implemented and tested

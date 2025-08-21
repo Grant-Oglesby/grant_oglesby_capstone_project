@@ -2,20 +2,36 @@ import streamlit as st
 import os
 
 
+# Function to display the next image in the list
+def next_image():
+    st.session_state.image_index = (
+        st.session_state.image_index + 1
+    ) % len(image_list)
+
+
+# Function to display the previous image in the list
+def back_image():
+    st.session_state.image_index = (
+        st.session_state.image_index - 1
+    ) % len(image_list)
+
+
+# Function to change the image index to a serious image
+def serious_toggle():
+    if st.session_state.serious is True:
+        st.session_state.serious = False
+        st.session_state.fun_or_serious = "Serious Mode"
+        if st.session_state.first_fun is True:
+            st.session_state.first_fun = False
+            st.balloons()
+    else:
+        st.session_state.serious = True
+        st.session_state.fun_or_serious = "Fun Button"
+
+
 # Page configuration
 st.set_page_config(
-    page_title="Streamlit Main",
-    page_icon=":wave:"
-)
-
-# Sidebar setup for navigation
-st.sidebar.title("Main")
-
-# Main content
-st.title("Grant Oglesby Capstone Project")
-st.write(
-    "An insight into the madness that is ETL pipelines "
-    "with poorly reported data"
+    page_title="Streamlit Main"
 )
 
 # Create list of images from images folder
@@ -37,12 +53,24 @@ text_list = [
         os.path.join(os.path.dirname(__file__), 'text')
     )
 ]
+
 # Initialize session state for image index
 if 'image_index' not in st.session_state:
     st.session_state.image_index = 0
     st.session_state.serious = True
     st.session_state.fun_or_serious = "The Fun Button"
+    st.session_state.first_fun = True
 
+# Sidebar setup for navigation
+st.sidebar.title("Main Page")
+
+# Main content
+st.title("Grant Oglesby Capstone Project")
+st.write(
+    "An insight into the madness that is ETL pipelines "
+    "with poorly reported data"
+)
+# Empty space for image to work with session_state and functions
 with st.empty():
     # Enter image into Streamlit from images folder
     if st.session_state.serious is False:
@@ -68,32 +96,9 @@ with st.expander("Notes"):
         ).read()
     )
 
-
-# Function to display the next image in the list
-def next_image():
-    st.session_state.image_index = (
-        st.session_state.image_index + 1
-    ) % len(image_list)
-
-
-# Function to display the previous image in the list
-def back_image():
-    st.session_state.image_index = (
-        st.session_state.image_index - 1
-    ) % len(image_list)
-
-
-# Function to change the image index to a serious image
-def serious_toggle():
-    if st.session_state.serious is True:
-        st.session_state.serious = False
-        st.session_state.fun_or_serious = "Serious Mode"
-    else:
-        st.session_state.serious = True
-        st.session_state.fun_or_serious = "Fun Button"
-
-
 # Use columns for navigation buttons to present side by side
+# Buttons will change the image and text being displayed
+# Buttons will also disable at the end and start of the images
 col1, col2, col3 = st.columns(3)
 with col1:
     st.button(

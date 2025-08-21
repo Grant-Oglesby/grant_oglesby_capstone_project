@@ -20,7 +20,7 @@ df_countries = pd.read_csv(csv_path)
 # Setup sidebar to provide functionality
 st.sidebar.header("Correlation Options")
 # Select region to narrow country options
-selected_region = st.sidebar.selectbox(
+selected_region = st.sidebar.multiselect(
     "Select Region",
     options=df_countries['region'].unique()
 )
@@ -32,13 +32,13 @@ select_all_countries = st.sidebar.checkbox(
 selected_countries = st.sidebar.multiselect(
     "Select Countries",
     options=(
-        df_countries[df_countries['region'] == selected_region]['country']
+        df_countries[df_countries['region'].isin(selected_region)]['country']
         .unique()
     )
 )
 if select_all_countries:
     selected_countries = (
-        df_countries[df_countries['region'] == selected_region]['country']
+        df_countries[df_countries['region'].isin(selected_region)]['country']
         .unique()
         .tolist()
     )

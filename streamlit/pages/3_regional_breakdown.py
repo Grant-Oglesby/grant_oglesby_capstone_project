@@ -49,7 +49,8 @@ y_axis_options = df.columns[
 ].tolist()
 selected_y_axis = st.sidebar.selectbox(
     "Select Y Axis",
-    options=y_axis_options
+    options=y_axis_options,
+    index=2
 )
 # Slider to select what range of years to display
 selected_year_range = st.sidebar.slider(

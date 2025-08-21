@@ -53,7 +53,8 @@ y_axis_options = df.columns[
 ].tolist()
 selected_y_axis = st.sidebar.selectbox(
     "Select Y Axis",
-    options=y_axis_options
+    options=y_axis_options,
+    index=2
     )
 # Select aggregate function to display
 selected_aggregation = st.sidebar.selectbox(

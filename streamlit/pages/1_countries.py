@@ -36,7 +36,8 @@ y_axis_options = df_countries.columns[
 ].tolist()
 selected_y_axis = st.sidebar.selectbox(
     "Select Y Axis",
-    options=y_axis_options
+    options=y_axis_options,
+    index=2
 )
 # Slider to select what range of years to display
 selected_year_range = st.sidebar.slider(
@@ -62,7 +63,7 @@ fig = px.line(
     filtered_df,
     x='year',
     y=selected_y_axis,
-    title='CO2 Emissions per Capita Over Time',
+    title=f'{selected_y_axis} Over Time',
     labels={'year': 'Year'},
     color='country'
 )
