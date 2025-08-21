@@ -11,7 +11,9 @@ def extract_text():
     # Iterate through list and store each requests.get.text in data/extract
     for i in range(len(urls)):
         # Check if data already downloaded and skip file saving if exists
-        file_exists = os.path.exists(f"data/extract/data{i}.csv")
+        file_path = "data/extract/"
+        path_exists = os.path.exists(file_path)
+        file_exists = path_exists and os.path.getsize(file_path) > 0
         # TESTING WHEN USING EXISTING FILES WILL NOT COVER LINES 19-22
         # TESTING RESULT WITH EXISTING FILES: 76%
         # TESTING RESULT WITHOUT EXISTING FILES: 100%
