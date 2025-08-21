@@ -11,11 +11,21 @@ st.set_page_config(
 )
 
 # import dataset as pd.DataFrame
-script_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(
-    script_dir, "..", "..", "data", "load", "go_capstone_data.csv"
-)
-df_countries = pd.read_csv(csv_path)
+# Setup database connection
+df_countries = pd.DataFrame()
+try:
+    # Attempt to connect to Pagila database for data
+    conn = st.connection("postgresql", type="sql")
+    df_countries = conn.query("SELECT * FROM de_2506_a.go_capstone_data")
+except Exception as e:
+    st.error(f"Error connecting to database: {e}\nUsing local file")
+else:
+    # If connection not found
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(
+        script_dir, "..", "..", "data", "load", "go_capstone_data.csv"
+    )
+    df_countries = pd.read_csv(csv_path)
 
 # Setup sidebar to provide functionality
 st.sidebar.header("Correlation Options")

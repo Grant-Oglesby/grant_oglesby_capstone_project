@@ -19,11 +19,21 @@ def aggregate_by_region_year(df, agg_func):
 
 
 # import dataset as pd.DataFrame
-file_dir = os.path.dirname(os.path.abspath(__file__))
-csv_path = os.path.join(
-    file_dir, "..", "..", "data", "load", "go_capstone_data.csv"
-)
-df = pd.read_csv(csv_path)
+# Setup database connection
+df = pd.DataFrame()
+try:
+    # Attempt to connect to Pagila database for data
+    conn = st.connection("postgresql", type="sql")
+    df = conn.query("SELECT * FROM de_2506_a.go_capstone_data")
+except Exception as e:
+    st.error(f"Error connecting to database: {e}\nUsing local file")
+else:
+    # If connection not found
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(
+        script_dir, "..", "..", "data", "load", "go_capstone_data.csv"
+    )
+    df = pd.read_csv(csv_path)
 
 # Create region DataFrames with different aggregate functions
 df_regions_mean = aggregate_by_region_year(df, 'mean')
